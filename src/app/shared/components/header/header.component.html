@@ -1,1 +1,24 @@
-<p>header works!</p>
+<header class="bg-gray-900 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center px-4 py-3">
+
+    <a routerLink="/" class="text-2xl font-bold hover:text-gray-300 transition">
+      You<span class="text-orange-500">Eats</span>
+    </a>
+
+    <nav class="flex items-center space-x-6">
+      <a routerLink="/menu" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+         class="text-gray-400 font-medium hover:text-white transition pb-1">
+        Menu
+      </a>
+
+      <a routerLink="/order" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+         class="text-gray-400 font-medium hover:text-white transition pb-1 flex items-center">
+        My Bill
+        <span class="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+          0
+        </span>
+      </a>
+    </nav>
+
+  </div>
+</header>
