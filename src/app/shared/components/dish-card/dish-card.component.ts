@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Dish } from '../../../core/models/dish.model';
 
 @Component({
   selector: 'app-dish-card',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './dish-card.component.css'
 })
 export class DishCardComponent {
-
+  @Input({ required: true }) dish!: Dish;
 }
