@@ -24,4 +24,11 @@ export class MenuService {
       console.log('Data seeded to localStorage!');
     }
   }
+
+
+  getMenu(): Observable<Dish[]> {
+    const data =  localStorage.getItem(this.STORAGE_KEY);
+    const dishes = data ? JSON.parse(data): [];
+    return of(dishes).pipe(delay(500));
+  }
 }
