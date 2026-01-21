@@ -12,8 +12,7 @@ export const removeItem = createAction(
   props<{ dishId: number }>()
 );
 
-
 export const loadSavedOrder = createAction(
-  'Order Load saved order',
+  '[Order] Load Saved Order',
   props<{ items: CartItem[] }>()
 );
