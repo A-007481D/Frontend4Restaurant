@@ -1,19 +1,45 @@
 import { createReducer, on } from '@ngrx/store';
-import { Dish } from '../../core/models/dish.model';
-import { addItem } from './order.actions';
+import { addItem, removeItem, loadSavedOrder } from './order.actions';
+import { CartItem } from '../../core/models/cart.model';
 
 export interface OrderState {
-    items: Dish[];
+  items: CartItem[];
 }
 
 export const initialState: OrderState = {
-    items: []
+  items: []
 };
 
 export const orderReducer = createReducer(
-    initialState,
-    on(addItem, (state, { dish }) => ({
+  initialState,
+
+  on(loadSavedOrder, (state, { items }) => ({
+    ...state,
+    items: items
+  })),
+
+  on(addItem, (state, { dish }) => {
+    const existingItem = state.items.find(i => i.dish.id === dish.id);
+
+    if (existingItem) {
+      return {
         ...state,
-        items: [...state.items, dish]
-    }))
+        items: state.items.map(item =>
+          item.dish.id === dish.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      };
+    } else {
+      return {
+        ...state,
+        items: [...state.items, { dish, quantity: 1 }]
+      };
+    }
+  }),
+
+  on(removeItem, (state, { dishId }) => ({
+    ...state,
+    items: state.items.filter(item => item.dish.id !== dishId)
+  }))
 );
