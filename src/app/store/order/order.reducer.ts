@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { addItem, removeItem, loadSavedOrder } from './order.actions';
-import { CartItem } from '../../core/models/cart.model'; // Fixed Import
+import { CartItem } from '../../core/models/cart.model';
 
 export interface OrderState {
   items: CartItem[];
@@ -37,6 +37,7 @@ export const orderReducer = createReducer(
       };
     }
   }),
+
   on(removeItem, (state, { dishId }) => ({
     ...state,
     items: state.items.filter(item => item.dish.id !== dishId)

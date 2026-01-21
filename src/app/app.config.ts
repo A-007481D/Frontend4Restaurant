@@ -6,14 +6,15 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { orderReducer } from './store/order/order.reducer';
+import { OrderEffects } from './store/order/order.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore(),
+    provideStore(), 
     provideState({ name: 'order', reducer: orderReducer }),
-    provideEffects(),
+    provideEffects(OrderEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
