@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Dish } from '../../../core/models/dish.model';
 
 @Component({
@@ -10,4 +10,5 @@ import { Dish } from '../../../core/models/dish.model';
 })
 export class DishCardComponent {
   @Input({ required: true }) dish!: Dish;
+  @Output() add = new EventEmitter<void>();
 }
