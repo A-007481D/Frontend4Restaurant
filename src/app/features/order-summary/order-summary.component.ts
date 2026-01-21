@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { selectCartItems, selectGrandTotal } from '../../store/order/order.selectors';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
