@@ -1,1 +1,54 @@
-<p>order-summary works!</p>
+<div class="container mx-auto p-6 max-w-3xl">
+  <h1 class="text-3xl font-bold mb-6 text-center">🧾 Your Bill</h1>
+
+  <!-- Empty Cart Message -->
+  @if ((cartItems$ | async)?.length === 0) {
+    <div class="text-center py-12 bg-gray-100 rounded-lg">
+      <p class="text-xl text-gray-500">🛒 Your Cart is Empty</p>
+      <p class="text-gray-400 mt-2">Add some delicious dishes to get started!</p>
+    </div>
+  }
+
+  <!-- Cart Items Table -->
+  @if ((cartItems$ | async)?.length! > 0) {
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <table class="w-full">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="py-3 px-4 text-left">Dish</th>
+            <th class="py-3 px-4 text-center">Qty</th>
+            <th class="py-3 px-4 text-right">Price</th>
+            <th class="py-3 px-4 text-right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of cartItems$ | async; track item.dish.id) {
+            <tr class="border-b hover:bg-gray-50">
+              <td class="py-3 px-4">{{ item.dish.name }}</td>
+              <td class="py-3 px-4 text-center">{{ item.quantity }}</td>
+              <td class="py-3 px-4 text-right">{{ item.dish.price | currency }}</td>
+              <td class="py-3 px-4 text-right font-medium">
+                {{ item.dish.price * item.quantity | currency }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <!-- Total Section -->
+      <div class="bg-gray-100 p-4">
+        <div class="flex justify-between items-center text-xl font-bold">
+          <span>Grand Total:</span>
+          <span class="text-green-600">{{ total$ | async | currency }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Button -->
+    <div class="mt-6 text-center">
+      <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+        Proceed to Checkout
+      </button>
+    </div>
+  }
+</div>
