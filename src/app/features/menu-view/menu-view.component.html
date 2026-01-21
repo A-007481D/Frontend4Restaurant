@@ -4,11 +4,11 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
     @for (dish of menu$ | async; track dish.id) {
-      <app-dish-card [dish]="dish"></app-dish-card>
+    <app-dish-card [dish]="dish" (add)="onAdd(dish)"></app-dish-card>
     } @empty {
-      <div class="col-span-full text-center py-10">
-        <p class="text-gray-500 text-lg animate-pulse">Loading delicious food...</p>
-      </div>
+    <div class="col-span-full text-center py-10">
+      <p class="text-gray-500 text-lg animate-pulse">Loading delicious food...</p>
+    </div>
     }
 
   </div>
