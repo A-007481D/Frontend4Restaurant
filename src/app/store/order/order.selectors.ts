@@ -23,3 +23,8 @@ export const selectGrandTotal = createSelector(
     selectTax,
     (subtotal, tax) => subtotal + tax
 );
+
+export const selectN = createSelector(
+    selectCartItems,
+    (items) => items.length
+);
