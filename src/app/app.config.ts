@@ -6,7 +6,6 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { orderReducer } from './store/order/order.reducer';
-import { OrderEffects } from './store/order/order.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(), 
     provideState({ name: 'order', reducer: orderReducer }),
-    provideEffects(OrderEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };

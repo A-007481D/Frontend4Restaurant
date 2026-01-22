@@ -15,7 +15,7 @@
          class="text-gray-400 font-medium hover:text-white transition pb-1 flex items-center">
         My Bill
         <span class="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-          0
+          {{ nItems$ | async }}
         </span>
       </a>
     </nav>
